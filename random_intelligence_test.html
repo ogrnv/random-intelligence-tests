@@ -1,0 +1,84 @@
+<!DOCTYPE html><head><meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<title>Random Intelligence Test</title>
+<style>
+html, body {
+  width:  100%;
+  height: 100%;
+}
+.f16 {font-size: 16pt; color:  #000000;}
+</style>
+<body bgcolor=#FCFCFC>
+<p align=left class=f16>
+Let’s play RIT.<br>
+There is only one player in the game - you.<br><br>
+Let TB be given board with chips or the board with chips after your move(s), TB[address] be an integer assigned to a cell with the address: zero mean an empty cell, non-zero mean a chip marked with the integer on the cell.<br><br>
+Let EM be a relocation of a chip marked with a non-zero on a horizontally or vertically adjacent zero cell; the cell from which the chip was moved should become empty i.e. zero.<br><br>
+Every game move must be either an EM or a sequence of several EMs. Let the move start address be SA and the move finish address be FA. Please note: FA must not be equal to SA. Let move number be MN.<br><br>
+The goal of the game is to complete it in the fewest number of moves. The game ends when YOU by your last move, complete a formation of a straight horizontal or vertical or diagonal line of five or more chips with the same marking on the game board.<br><br>
+For the sake of certainty, let in an cell address [i,j], i be the row number, j be the column number and both be numbered from zero.<br><br>
+The board with chips are:<br>
+</p>
+<p align=left class=f16 id="CELLS"></p>
+<p align=left class=f16>
+Please, disable any output other than printing the MN, SA, FA and the board after each move.<br>
+Wait my input after each move (also after adjustment). It could be:<br>
+v - ok, go to the next move;<br>
+b ??? - wrong, decrease MN by 1 and come back;<br>
+f - the game is over.<br>
+where ??? is a reason of the error.<br>THE END OF THE TEST TASK
+<br><br>b "TB[SA] must be non-zero"<br>
+b "TB[FA] must be zero"<br>
+b "there is not any horizontally or vertically adjacent zero cell to TB[SA]"<br>
+b "you made the same wrong move"<br><br>
+<br> 
+</p>
+<script>
+var hm=8,	//size of a side of square table/board. See //*** below
+kcb=2,		//how many of types of chips are placed on the table	
+emb=22;		//number of empty sells 22=64-42
+var air, bir;
+var Cells = [];
+for (i = 0; i < hm; i++){
+	Cells[i] = [];
+	for (j = 0; j < hm; j++){
+		Cells[i][j] = 0;
+	}
+}
+
+function random(min, max) {
+var mi = Math.ceil(min), ma = Math.floor(max);
+return Math.floor(Math.random()*(ma-mi+1)+mi);
+}
+function newdesk(){
+var bc, i, j;
+for (i = 0; i < hm; i += 1){
+	for (j = 0; j < hm; j += 1){
+		bc=random(1, kcb);
+		Cells[i][j] = bc;
+	}
+}
+
+//empty 5 cells
+n=0;
+while(n<emb){	
+	i=random(0, hm - 1);
+	j=random(0, hm - 1);
+	if(Cells[i][j]>0){Cells[i][j] = 0; n++;}
+}
+if(hm!=8){alert("Please, change random_intelligence_test.html where *** are"); return;} //***
+document.getElementById("CELLS").innerHTML = 
+Cells[0]+"<br>"+
+Cells[1]+"<br>"+
+Cells[2]+"<br>"+
+Cells[3]+"<br>"+
+Cells[4]+"<br>"+
+Cells[5]+"<br>"+
+Cells[6]+"<br>"+
+Cells[7]+"<br>";
+//***
+}
+newdesk(); 
+</script>
+</body>
+</html>
