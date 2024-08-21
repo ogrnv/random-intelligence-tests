@@ -34,7 +34,7 @@ b "you made the same wrong move"<br><br>
 <br> 
 </p>
 <script>
-var hm=8,	//size of a side of square table/board. See //*** below
+var hm=8,	//size of a side of square table/board.
 kcb=2,		//how many of types of chips are placed on the table	
 emb=22;		//number of empty sells 22=64-42
 var air, bir;
@@ -66,17 +66,8 @@ while(n<emb){
 	j=random(0, hm - 1);
 	if(Cells[i][j]>0){Cells[i][j] = 0; n++;}
 }
-if(hm!=8){alert("Please, change random_intelligence_test.html where *** are"); return;} //***
-document.getElementById("CELLS").innerHTML = 
-Cells[0]+"<br>"+
-Cells[1]+"<br>"+
-Cells[2]+"<br>"+
-Cells[3]+"<br>"+
-Cells[4]+"<br>"+
-Cells[5]+"<br>"+
-Cells[6]+"<br>"+
-Cells[7]+"<br>";
-//***
+var s = ""; for (i=0; i<hm; i++) s=s+Cells[i]+"<br>";
+document.getElementById("CELLS").innerHTML = s;
 }
 newdesk(); 
 </script>
