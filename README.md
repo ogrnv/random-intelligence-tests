@@ -6,6 +6,6 @@ Although the standards of intelligence are already developed and freely availabl
 
 There is also possibility to compare intelligence of several test-takers (LLMs as well) without the standards of intelligence, giving them the same random tasks of varying difficulty.
 
-To evaluate ability of test-takers to pass the random tests open random_intelligence_test.html in your browser and copy the text up to the "THE END OF THE TEST TASK" sentence.
+To evaluate ability of test-takers to pass the random tests open FIRST.html/NEXT.html or random_intelligence_test.html in your browser and copy the text up to the "THE END OF THE TEST TASK" sentence.
 
 It is possible to change complexity of the tasks by editing script in the FIRST.html or random_intelligence_test.html or by reloading the pages in the browser. If you want, you can use a more random generator.
