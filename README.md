@@ -8,4 +8,4 @@ There is also possibility to compare intelligence of several test-takers (LLMs a
 
 To evaluate ability of test-takers to pass the random tests open random_intelligence_test.html in your browser and copy the text up to the "THE END OF THE TEST TASK" sentence.
 
-It is possible to change complexity of the tasks by editing script in the random_intelligence_test.html or by reloading the page in the browser. If you want, you can use a more random generator.
+It is possible to change complexity of the tasks by editing script in the FIRST.html or random_intelligence_test.html or by reloading the pages in the browser. If you want, you can use a more random generator.
