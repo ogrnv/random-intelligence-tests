@@ -9,3 +9,5 @@ There is also possibility to compare intelligence of several test-takers (LLMs a
 To evaluate ability of test-takers to pass the random tests open FIRST.html/NEXT.html or random_intelligence_test.html in your browser and copy the text up to the "THE END OF THE TEST TASK" sentence.
 
 It is possible to change complexity of the tasks by editing script in the FIRST.html or random_intelligence_test.html or by reloading the pages in the browser. If you want, you can use a more random generator.
+
+If you convince an AI ​​to use FIRST.html/NEXT.html scripts to generate test data and to control own responses, then the AI ​​can train itself on these tests without intermediaries. You can also ask them to transform the scripts into code that is more efficient for them.
