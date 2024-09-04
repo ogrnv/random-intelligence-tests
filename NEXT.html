@@ -259,7 +259,7 @@ if(tbx.length != hm*hm) {alert("b - TB size is not "+hm+"*"+hm); exit();}
 let m=0, ca, cb,
 	cbz=0, // zeroes number
 	cab=0; //the marking of moving chip 
-n=0; let err=0;
+n=0; let err=0, ir, jr;
 for (i = 0; i < hm; i++){
 	if(n<5){n5[n]=Number(n5x.substring(n, n+1));}
 	Csa[i] = []; Csb[i] = []; TC[i] = [];
@@ -270,7 +270,7 @@ for (i = 0; i < hm; i++){
 		if(cb==0) cbz++;
 		if(ca!=cb) {
 		 // one of them should be zero
-		 if(ca>0&&cb>0) {err=1;}
+		 if(ca>0&&cb>0) {err=1; ir=i; jr=j;}
 		 if(ca>0) {x0=i; y0=j; m++; //0-start address
 		 }
 		 if(cb>0) {x1=i; y1=j; m++; //1-finish address
@@ -279,7 +279,7 @@ for (i = 0; i < hm; i++){
 		n++;
 	}
 }
-if(err==1) {xx="b - some chips have been swapped or relabeled";  viv();}
+if(err==1) {xx="b - swapped or relabeled chips. Check ["+ir+","+jr+"] address"; viv();}
 if(cbz!=emb) {xx="b - the TB zeros number has been changed";  viv();}
 if(m<2) {xx="b - TB has less than two changes";  viv();}
 if(m>2) {xx="b - TB has more than two changes"; viv();}
