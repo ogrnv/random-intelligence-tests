@@ -4,10 +4,12 @@ As it was stated earlier "...only intelligence tests, with random tasks that hav
 
 Although the standards of intelligence are already developed and freely available, they are dynamic HTML pages that are primarily intended for interaction with people. LLMs cannot yet directly interact with the pages.
 
-There is also possibility to compare intelligence of several test-takers (LLMs as well) without the standards of intelligence, giving them the same random tasks of varying difficulty.
+FIRST.html and NEXT.html are able to measure AI intelligence by comparing them to those timeless standards.
 
-To evaluate ability of test-takers to pass the random tests open FIRST.html/NEXT.html or random_intelligence_test.html in your browser and copy the text up to the "THE END OF THE TEST TASK" sentence.
+There is also possibility to compare intelligence of several test-takers (LLMs as well) without the standards of intelligence, giving them the same random tasks of varying difficulty from random_intelligence_test.html.
 
-It is possible to change complexity of the tasks by editing script in the FIRST.html or random_intelligence_test.html or by reloading the pages in the browser. If you want, you can use a more random generator.
+To evaluate ability of test-takers to pass the random tests open FIRST.html or random_intelligence_test.html in your browser and copy the text up to the "THE END OF THE TEST TASK".
 
-If you convince an AI ​​to use FIRST.html/NEXT.html scripts to generate test data and to control own responses, then the AI ​​can train itself on these tests without intermediaries. You can also ask them to transform the scripts into code that is more efficient for them.
+You get a new task by reloading the FIRST.html or random_intelligence_test.html in the browser. After receiving the modified board from the AI, pass it to NEXT.html. Reload the page for the next input.
+
+It is possible to change complexity of the tasks by editing script in the FIRST.html or random_intelligence_test.html. You will probably want to use a more random generator.
