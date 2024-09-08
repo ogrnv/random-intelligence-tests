@@ -27,12 +27,12 @@ a:link, a:visited {
 <td width=70%>
 <p align=left class=f16>
 Let’s play RIT:<br><a href="https://github.com/ogrnv/random-intelligence-tests" target="_blank">https://github.com/ogrnv/random-intelligence-tests</a><br><br>
-There is only one player in the game - you.<br><br>
+There is only one player in the game - you, so you should take the first move!<br><br>
 Let TB be given board with chips or the board with chips after your move(s), TB[address] be an integer assigned to a cell with the address: zero mean an empty cell, non-zero mean a chip marked with the integer on the cell.<br><br>
 Let EM be a relocation of a chip to a horizontally or vertically adjacent zero cell. As a result of this relocation, the values ​​of TB[from] and TB[to] should swap.<br><br>
 Every game move must be either an EM or a sequence of several EMs. Let the move start address be SA and the move finish address be FA. Please note: FA must not be equal to SA. Let move number be MN.<br><br>
 The goal of the game is to complete it in the fewest number of moves. The game ends after <b><span id="STEPS"></span></b> step(s).
-A step ends when YOU by your last move, complete a formation of a straight horizontal or vertical or diagonal line of five or more chips with the same marking. After completing the step, you will receive and must use TB board with updates: five chips are removed from the line, then five previously presented chips are added to the free cells of the board.<br><br>
+A step ends when YOU by your last move, complete a formation of a straight horizontal or vertical or diagonal line of five or more chips with the same marking. After completing the step, you will receive and must use TB board with updates: five chips are removed from the line, then five previously presented chips are randomly added to the free cells of the board.<br><br>
 For the sake of certainty, let in an cell address [i,j], i be the row number, j be the column number and both be numbered from zero.</p><p align=left class=F16> 
 The board with chips is:<br></p>
 <p align=left class=F16 id="CELLS"></p>
