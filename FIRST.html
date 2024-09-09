@@ -32,7 +32,8 @@ Let TB be given board with chips or the board with chips after your move(s), TB[
 Let EM be a relocation of a chip to a horizontally or vertically adjacent zero cell. As a result of this relocation, the values ​​of TB[from] and TB[to] should swap.<br><br>
 Every game move must be either an EM or a sequence of several EMs. Let the move start address be SA and the move finish address be FA. Please note: FA must not be equal to SA. Let move number be MN.<br><br>
 The goal of the game is to complete it in the fewest number of moves. The game ends after <b><span id="STEPS"></span></b> step(s).
-A step ends when YOU by your last move, complete a formation of a straight horizontal or vertical or diagonal line of five or more chips with the same marking. After completing the step, you will receive and must use TB board with updates: five chips are removed from the line, then five previously presented chips are randomly added to the free cells of the board.<br><br>
+A step ends when YOU by your last move, complete a formation of a straight horizontal or vertical or diagonal line of five or more chips with the same marking. After completing the step, you will receive and must use TB board with these updates:
+ five successive chips are removed from the line (for cases with long or/and several line(s) it done randomly), then five previously presented chips are randomly added to the free cells of the board.<br><br>
 For the sake of certainty, let in an cell address [i,j], i be the row number, j be the column number and both be numbered from zero.</p><p align=left class=F16> 
 The board with chips is:<br></p>
 <p align=left class=F16 id="CELLS"></p>
