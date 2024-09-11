@@ -13,3 +13,5 @@ To evaluate ability of test-takers to pass the random tests open FIRST.html or r
 You get a new task by reloading the FIRST.html or random_intelligence_test.html in the browser. After receiving the modified board from the AI, pass it to NEXT.html. Reload the page for the next input.
 
 It is possible to change complexity of the tasks by editing script in the FIRST.html or random_intelligence_test.html. You will probably want to use a more random generator.
+
+FIRST.html and NEXT.html were tested in Firefox. Chrome/chromium requires additional tunings.
