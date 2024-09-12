@@ -5,6 +5,7 @@ As it was stated earlier "...only intelligence tests, with random tasks that hav
 Although the standards of intelligence are already developed and freely available, they are dynamic HTML pages that are primarily intended for interaction with people. LLMs cannot yet directly interact with the pages.
 
 FIRST.html and NEXT.html are able to measure AI intelligence by comparing them to those timeless standards.
+NEXTR.html measures the average intelligence of the Monte Carlo method.
 
 There is also possibility to compare intelligence of several test-takers (LLMs as well) without the standards of intelligence, giving them the same random tasks of varying difficulty from random_intelligence_test.html.
 
@@ -14,4 +15,6 @@ You get a new task by reloading the FIRST.html or random_intelligence_test.html 
 
 It is possible to change complexity of the tasks by editing script in the FIRST.html or random_intelligence_test.html. You will probably want to use a more random generator.
 
-FIRST.html and NEXT.html were tested in Firefox. Chrome/chromium requires additional tunings.
+To compare average intelligence of the Monte Carlo method with intelligence of an AI, you need to open FIRST.html in Firefox, then NEXTR.html, and then NEXT.html.
+
+FIRST.html, NEXT.html and NEXTR.html were tested in Firefox. Chrome/chromium requires additional tunings.
