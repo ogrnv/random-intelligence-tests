@@ -281,7 +281,9 @@ for (i = 0; i < hm; i++){
 	}
 }
 }
-xx = "<b>All " +tsts+ " tests completed.<br>Moves = " + mn + " Steps = " +tsts*stp + "<br>Average RITQ = 1000*Steps/Moves = " + (1000*tsts*stp/mn).toFixed(3) + "</b> <br>"; 
+xx = "<b>All " +tsts+ " tests completed.<br><br>Moves = " + mn + " Steps = " +tsts*stp + 
+" Complexity = Moves/Steps = " + (mn/(tsts*stp)).toFixed(3) +
+"<br><br>Average RITQ = 1000*Steps/Moves = " + (1000*tsts*stp/mn).toFixed(3) + " for the complexity</b><br>";
 document.getElementById("OUT").innerHTML = xx;
 </script>
 </td><td width=15%>&nbsp;</td></tr></tbody>
