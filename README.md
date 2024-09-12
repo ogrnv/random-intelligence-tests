@@ -4,8 +4,7 @@ As it was stated earlier "...only intelligence tests, with random tasks that hav
 
 Although the standards of intelligence are already developed and freely available, they are dynamic HTML pages that are primarily intended for interaction with people. LLMs cannot yet directly interact with the pages.
 
-FIRST.html and NEXT.html are able to measure AI intelligence by comparing them to those timeless standards.
-NEXTR.html measures the average intelligence of the Monte Carlo method.
+FIRST.html and NEXT.html are able to measure AI intelligence by comparing them to those timeless standards. The complexity of tasks is determined by the size of the board,  the number of chips and the number of types of chips.  The complexity can be measured by a universal solver - Monte Carlo method. NEXTR.html measures the average intelligence of the universal solver and complexity of tasks.
 
 There is also possibility to compare intelligence of several test-takers (LLMs as well) without the standards of intelligence, giving them the same random tasks of varying difficulty from random_intelligence_test.html.
 
