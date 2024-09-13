@@ -263,9 +263,9 @@ if(TC[x1][y1]==1){uu=1;}
 Csb[x1][y1]=Csb[x0][y0]; Csb[x0][y0]=0;
 ValuX(Csb[x1][y1],x1,y1);
 mn++;
-if(ox5>0){qn++;}
 if(ox5>0)
 {
+	qn++;
 	if(qn<stp) {
 		n=0;
 		while(n<5){n5[n]=random(1, kcb);n++;}
@@ -281,10 +281,9 @@ for (i = 0; i < hm; i++){
 	}
 }
 }
-xx = "<b>All " +tsts+ " tests completed.<br><br>Moves = " + mn + " Steps = " +tsts*stp + 
-" Complexity = Moves/Steps = " + (mn/(tsts*stp)).toFixed(3) +
-"<br><br>Average RITQ = 1000*Steps/Moves = " + (1000*tsts*stp/mn).toFixed(3) + " for the complexity</b><br>";
-document.getElementById("OUT").innerHTML = xx;
+document.getElementById("OUT").innerHTML = "<b>All " +tsts+ " tests completed.<br><br>Moves = " + mn + " Steps = " + tsts*stp + " MC-complexity = Moves/Steps = " + 
+(mn/(tsts*stp)).toFixed(3) + "<br><br>Average MC-RITQ = 1000*Steps/Moves = " + (1000*tsts*stp/mn).toFixed(3) + " for the complexity and this configuration: " + hm
+ + "*" + hm + ", " + (-emb+(hm*hm)) + " chips of "+ kcb + " types</b><br>";
 </script>
 </td><td width=15%>&nbsp;</td></tr></tbody>
 </table>
