@@ -55,11 +55,11 @@ ina, jna, iko, jko, ox5=0, hmb, bc;
 var  n5x, n5 = [];
 var Csa = [], Csb = [], TC = [],
 	x0 = -1, x1 = -1, y0 = -1, y2 = -1; //0-start address 1-finish one
-function random(min, max) {
+/*function random(min, max) {
 var mi = Math.ceil(min), ma = Math.floor(max);
 return Math.floor(Math.random()*(ma-mi+1)+mi);
-}
-/*function random(min, max) {//https://stackoverflow.com/a/65440696
+}*/
+function random(min, max) {//https://stackoverflow.com/a/65440696
     const range = max - min + 1
     const bytes_needed = Math.ceil(Math.log2(range) / 8)
     const cutoff = Math.floor((256 ** bytes_needed) / range) * range
@@ -70,7 +70,7 @@ return Math.floor(Math.random()*(ma-mi+1)+mi);
         value = bytes.reduce((acc, x, n) => acc + x * 256 ** n, 0)
     } while (value >= cutoff)
     return min + value % range
-}*/
+}
 function fz(fzx, fzy){
  if((fzx>0)&&(Csa[fzx-1][fzy]==0)&&(TC[fzx-1][fzy]==0))
    {TC[fzx-1][fzy]=1; fz((fzx-1),fzy);}
@@ -81,44 +81,37 @@ function fz(fzx, fzy){
  if((fzy<hm-1)&&(Csa[fzx][fzy+1]==0)&&(TC[fzx][fzy+1]==0))
    {TC[fzx][fzy+1]=1; fz(fzx,(fzy+1));}
 }
-function hor(colr, i, j){
+function ver(colr, i, j){
 ina=i; jna=j;
 while((ina-1) >= 0){
 ina--;
 if(colr != Csb[ina][j]){ina++; break;}	
 }
-// ищем справа первый другой цвет
 iko=i;
 while((iko+1) < hm){
 iko++;
 if(colr != Csb[iko][j]){iko--; break;}	
 }
-hmb=iko-ina+1; // длина линии по горизонтали
+hmb=iko-ina+1;
 if (hmb>4) {ox5=1;}
-//hor end
 }
 //-----------------------------------------
-function ver(colr, i, j){
-//v по вертикали (меняем второй индекс таблицы, i=const)
-// ищем сверху первый другой цвет
+function hor(colr, i, j){
 jna=j; ina=i;
 while((jna-1) >= 0){
 jna--;
 if(colr != Csb[i][jna]){jna++; break;}	
 }
-// ищем вниз первый другой цвет
 jko=j;
 while((jko+1) < hm){
 jko++;
 if(colr != Csb[i][jko]){jko--; break;}	
 }
-hmb=jko-jna+1; // длина линии
+hmb=jko-jna+1;
 if (hmb>4) {ox5=1;}
-// ver ends
 }
 //-----------------------------------------
 function nak(colr, i, j){
-//наклонно '\' - меняютя i j
 ina=i; jna=j;
 while((ina-1) >= 0 && (jna-1) >= 0){
 ina--; jna--;
@@ -129,27 +122,23 @@ while((iko+1) < hm && (jko+1) < hm){
 iko++; jko++;
 if(colr != Csb[iko][jko]){iko--; jko--; break;}	
 }
-hmb=jko-jna+1; // длина линии
+hmb=jko-jna+1;
 if (hmb>4) {ox5=1;}
-// '/' ends
 }
 //-----------------------------------------
 function nkl(colr, i, j){
-//наклонно '/' - меняютя i j
 ina=i; jna=j;
 while((ina+1) < hm && (jna-1) >= 0){
 ina++; jna--;
 if(colr != Csb[ina][jna]){ina--; jna++; break;}	
 }
-
 iko=i; jko=j;
 while((iko-1) >= 0 && (jko+1) < hm){
 iko--; jko++;
 if(colr != Csb[iko][jko]){iko++; jko--; break;}	
 }
-hmb=ina-iko+1; // длина линии
+hmb=ina-iko+1;
 if (hmb>4) {ox5=1;}
-// '\' ends
 }
 function ValuX(colr, i, j)
 {
@@ -178,8 +167,8 @@ while(n<4){ //ищем номер порядка e
 	if(tt[n]==e) {//n - номер типа - | / \ 
 	//для определенного типа n ищем 5 в ряд 
 	switch (n) {
-  	case 0: hor(colr, i, j); break;
-	case 1: ver(colr, i, j); break;
+  	case 0: ver(colr, i, j); break;
+	case 1: hor(colr, i, j); break;
 	case 2: nak(colr, i, j); break;
 	case 3: nkl(colr, i, j); break; 
 	default:
@@ -311,7 +300,7 @@ else {
 		s = "The next five chips: "; for (i=0; i<4; i++) s=s+n5[i]+","; s=s+n5[4];
 		document.getElementById("NEXT5").innerHTML = s;
 		xx=xx+"s - the updated board:<br>";}
-	else {xx=xx+"F - the game is over. Thanks!";}
+	else {xx=xx+"F - the game is over. Many thanks!";}
 }
 if(qn<stp){
 for (i=0; i<hm; i++) xx=xx+Csb[i]+"<br>";
