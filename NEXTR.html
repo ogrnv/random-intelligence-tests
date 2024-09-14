@@ -52,9 +52,9 @@ stp=0,		//steps
 Csa = [],
 Csb = []	//board
 ;		
-
+var tst_mn=0, min_tst_mn=Infinity;
 var xx="",ina, jna, iko, jko, ox5=0, hmb, bc;
-var  n5x, n5 = [], TC = [];
+var  n5x, n5 = [], n5f = [], TC = [];
 var ca, uu=0, n=0; ox5=0;
 var x0 = -1, x1 = -1, y0 = -1, y2 = -1; //0-start address 1-finish one
 /*function random(min, max) {
@@ -238,7 +238,7 @@ for (let i = 0; i < hmc.length; i++) {
 if(csx.length != hm*hm) {alert("b - TB size is not "+hm+"*"+hm); exit();}
 n=0;
 for (i = 0; i < hm; i++){
-	if(n<5){n5[n]=Number(n5x.substring(n, n+1));}
+	if(n<5){n5f[n]=n5[n]=Number(n5x.substring(n, n+1));}
 	Csa[i] = []; Csb[i] = []; TC[i] = [];
 	for (j = 0; j < hm; j++){
 		TC[i][j] = 0;
@@ -262,7 +262,7 @@ if(TC[x1][y1]==1){uu=1;}
 }
 Csb[x1][y1]=Csb[x0][y0]; Csb[x0][y0]=0;
 ValuX(Csb[x1][y1],x1,y1);
-mn++;
+mn++; tst_mn++;
 if(ox5>0)
 {
 	qn++;
@@ -274,16 +274,17 @@ if(ox5>0)
 }
 qn=0; n=0;
 for (i = 0; i < hm; i++){
-	if(n<5){n5[n]=Number(n5x.substring(n, n+1));}
+	if(n<5){n5[n]=n5f[n];}
 	for (j = 0; j < hm; j++){
 		Csb[i][j] = Csa[i][j];
 	n++;
 	}
 }
+//here a test ends
+if(tst_mn < min_tst_mn)min_tst_mn=tst_mn;
+tst_mn=0;
 }
-document.getElementById("OUT").innerHTML = "<b>All " +tsts+ " tests completed.<br><br>Moves = " + mn + " Steps = " + tsts*stp + " MC-complexity = Moves/Steps = " + 
-(mn/(tsts*stp)).toFixed(3) + "<br><br>Average MC-RITQ = 1000*Steps/Moves = " + (1000*tsts*stp/mn).toFixed(3) + " for the complexity and this configuration: " + hm
- + "*" + hm + ", " + (-emb+(hm*hm)) + " chips of "+ kcb + " types</b><br>";
+document.getElementById("OUT").innerHTML = "<b>All " +tsts+ " tests completed.<br><br>For this configuration: "+hm+"*" + hm + ", " + (-emb+(hm*hm)) + " chips of "+ kcb + " types:<br><br>MNMT i.e. Minimum number of moves in a test = "+min_tst_mn+"<br>Maximum MC-RITQ = 1000*Steps/MNMT = " + (1000*stp/min_tst_mn).toFixed(2) + "<br><br>Moves = "+mn + " Steps = "+ tsts*stp + " MC-complexity = Moves/Steps = " + (mn/(tsts*stp)).toFixed(2) + "<br>Average MC-RITQ = 1000*Steps/Moves = " + (1000*tsts*stp/mn).toFixed(2) + "</b><br>";
 </script>
 </td><td width=15%>&nbsp;</td></tr></tbody>
 </table>
