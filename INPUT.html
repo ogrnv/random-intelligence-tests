@@ -1,0 +1,112 @@
+<!DOCTYPE html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<title>INPUT - Random Intelligence Test</title>
+<style>
+html, body {
+background-color: rgba(16, 16, 32, 1.0);
+color:#FFFFFF;
+font-size:16px;
+width:  100%;
+height: 100%;
+}
+a:link, a:visited {
+  color: #0FF;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+.f16 {font-size: 16pt; color:  #0F0;}
+.F16 {font-size: 16pt; color:  #0FF;}
+</style> 
+<body>
+<table width=100% heigth=100%>
+<tbody>
+<tr>
+<td width=15%>&nbsp;</td>
+<td width=70%>
+<p align=left class=f16>
+<br><br><br>
+<b>
+Board size=<span id="HM"></span><br>
+Empty cells number=<span id="EMB"></span><br>
+Number of types of chips=<span id="KCB"></span><br>
+Steps in one test=<span id="STEPS"></span><br></b></p>
+<p align=left class=F16> 
+The board with chips is:<br></p>
+<p align=left class=F16 id="CELLS"></p>
+<p align=left class=F16>The next five chips: <span id="NEXT5"></span>
+<br><br><a href="https://github.com/ogrnv/random-intelligence-tests" target="_blank">https://github.com/ogrnv/random-intelligence-tests</a>
+</p>
+
+<script>
+var hm=8,	//size of a side of square table/board.
+kcb=2,		//how many of types of chips are placed on the table	
+emb=10,		//number of empty sells 22=64-42
+stp=2;		//number of steps that stops test
+var Cells = [];
+//you can insert a string below with any separators or without them
+var Cells_string =`
+
+2,2,0,2,1,1,2,1
+1,1,2,2,1,2,2,1
+1,1,1,1,2,1,1,1
+1,2,0,2,0,2,0,1
+2,1,2,0,1,2,0,2
+1,1,0,1,1,0,1,2
+1,1,2,2,1,2,2,2
+1,2,0,2,0,1,2,1
+
+`;
+//separator must be a comma:
+var n5 = [1,1,1,1,1];
+
+let n=0;
+let cs = Cells_string.replace(/[^0-9]/g, "");
+
+if(cs.length != hm*hm)
+	{alert ("hm*hm not = length Cells_string"); exit();}
+
+for (i = 0; i < hm; i++){
+	Cells[i] = [];
+	for (j = 0; j < hm; j++){
+		Cells[i][j] = Number(cs.substring(n, n+1)); n++;
+	}
+}
+
+document.getElementById("HM").innerHTML = hm;
+document.getElementById("EMB").innerHTML = emb;
+document.getElementById("KCB").innerHTML = kcb;
+
+var s = ""; for (i=0; i<hm; i++) s=s+Cells[i]+"<br>";
+document.getElementById("CELLS").innerHTML = s;
+s = ""; for (i=0; i<4; i++) s=s+n5[i]+","; s=s+n5[4];
+document.getElementById("NEXT5").innerHTML = s;
+document.getElementById("STEPS").innerHTML = stp;
+
+//https://stackoverflow.com/questions/2144386/how-to-delete-a-cookie
+document.cookie = 'hm=; Max-Age=-99999999;';
+document.cookie = 'kcb=; Max-Age=-99999999;';
+document.cookie = 'emb=; Max-Age=-99999999;';
+document.cookie = 'cs=; Max-Age=-99999999;';
+document.cookie = 'mn=; Max-Age=-99999999;';
+document.cookie = 'qn=; Max-Age=-99999999;';
+document.cookie = 'stp=; Max-Age=-99999999;';
+document.cookie = 'n5=; Max-Age=-99999999;';
+document.cookie = 'tb=; Max-Age=-99999999;';
+		
+document.cookie = "hm="+hm;//size of a side of square table/board.
+document.cookie = "kcb="+kcb;//how many of types of chips are placed on the table
+document.cookie = "emb="+emb;//number of empty sells 22=64-42
+document.cookie = "mn=0";//number of moves
+document.cookie = "qn=0";//number of finished lines >4 chips long
+document.cookie = "stp="+stp;//number of steps in the test
+
+document.cookie = "cs="+cs;
+sc=""; sc=n5; cs=sc.toString().replace(/[^0-9]/g, "");
+document.cookie = "n5="+cs;
+</script>
+</td><td width=15%>&nbsp;</td></tr></tbody>
+</table>
+</body>
+</html>
