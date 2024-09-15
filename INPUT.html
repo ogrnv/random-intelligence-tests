@@ -26,18 +26,33 @@ a:link, a:visited {
 <td width=15%>&nbsp;</td>
 <td width=70%>
 <p align=left class=f16>
-<br><br><br>
-<b>
+Let’s play RIT:<br><a href="https://github.com/ogrnv/random-intelligence-tests" target="_blank">https://github.com/ogrnv/random-intelligence-tests</a><br><br>
+There is only one player in the game - you, so you should take the first move!<br><br>
+Let TB be given board with chips or the board with chips after your move(s), TB[address] be an integer assigned to a cell with the address: zero mean an empty cell, non-zero mean a chip marked with the integer on the cell.<br><br>
+Let EM be a relocation of a chip to a horizontally or vertically adjacent zero cell. As a result of this relocation, the values ​​of TB[from] and TB[to] should swap.<br><br>
+Every game move must be either an EM or a sequence of several EMs. Let the move start address be SA and the move finish address be FA. Please note: FA must not be equal to SA. Let move number be MN.<br><br>
+The goal of the game is to complete it in the fewest number of moves. The game ends after <b><span id="STEPS"></span></b> step(s).
+A step ends when YOU by your last move, complete a formation of a straight horizontal or vertical or diagonal line of five or more chips with the same marking. After completing the step, you will receive and must use TB board with these updates:
+ five successive chips are removed from the line (for cases with long or/and several line(s) it done randomly), then five previously presented chips are randomly added to the free cells of the board.<br><br>
+For the sake of certainty, let in an cell address [i,j], i be the row number, j be the column number and both be numbered from zero.</p><p align=left class=F16> 
+The board with chips is:<br></p>
+<p align=left class=F16 id="CELLS"></p>
+<p align=left class=F16>The next five chips: <span id="NEXT5"></span></p>
+<p align=left class=f16>
+Please, disable any output other than printing the MN, SA, FA and the board after each move.<br>
+Wait my input after each your move. It could be:<br>
+a status line indicating the number of moves and steps;<br>
+ok - go to the next move;<br>
+b ??? - wrong, decrease MN by 1 and come back;<br>
+s - a step completed. An updated board with chips and five new random chips will be provided;<br>
+F - the game is over.<br>
+where ??? is a reason of the error.
+<br><br>THE END OF THE TEST TASK</p>
+<p align=left class=F16>
 Board size=<span id="HM"></span><br>
 Empty cells number=<span id="EMB"></span><br>
 Number of types of chips=<span id="KCB"></span><br>
-Steps in one test=<span id="STEPS"></span><br></b></p>
-<p align=left class=F16> 
-The board with chips is:<br></p>
-<p align=left class=F16 id="CELLS"></p>
-<p align=left class=F16>The next five chips: <span id="NEXT5"></span>
-<br><br><a href="https://github.com/ogrnv/random-intelligence-tests" target="_blank">https://github.com/ogrnv/random-intelligence-tests</a>
-</p>
+Steps in one test=<span id="STEPSS"></span><br></b><br><br><br></p>
 
 <script>
 var hm=8,	//size of a side of square table/board.
@@ -48,18 +63,18 @@ var Cells = [];
 //you can insert a string below with any separators or without them
 var Cells_string =`
 
-2,2,0,2,1,1,2,1
-1,1,2,2,1,2,2,1
-1,1,1,1,2,1,1,1
-1,2,0,2,0,2,0,1
-2,1,2,0,1,2,0,2
-1,1,0,1,1,0,1,2
-1,1,2,2,1,2,2,2
-1,2,0,2,0,1,2,1
+1,1,2,0,2,1,2,1
+0,1,2,0,1,1,2,1
+1,1,0,2,2,2,1,1
+2,1,2,2,2,2,2,1
+1,2,2,1,2,2,0,2
+1,1,0,2,0,2,1,0
+2,1,1,2,1,2,2,1
+0,2,2,2,0,2,2,2
 
 `;
 //separator must be a comma:
-var n5 = [1,1,1,1,1];
+var n5 = [1,1,2,1,1];
 
 let n=0;
 let cs = Cells_string.replace(/[^0-9]/g, "");
@@ -83,6 +98,7 @@ document.getElementById("CELLS").innerHTML = s;
 s = ""; for (i=0; i<4; i++) s=s+n5[i]+","; s=s+n5[4];
 document.getElementById("NEXT5").innerHTML = s;
 document.getElementById("STEPS").innerHTML = stp;
+document.getElementById("STEPSS").innerHTML = stp;
 
 //https://stackoverflow.com/questions/2144386/how-to-delete-a-cookie
 document.cookie = 'hm=; Max-Age=-99999999;';
