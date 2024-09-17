@@ -284,7 +284,7 @@ for (i = 0; i < hm; i++){
 if(tst_mn < min_tst_mn)min_tst_mn=tst_mn;
 tst_mn=0;
 }
-document.getElementById("OUT").innerHTML = "<b>All " +tsts+ " tests completed.<br><br>Monte Carlo (MC) method results<br>for this configuration: "+hm+"*" + hm + ", " + (-emb+(hm*hm)) + " chips of "+ kcb + " types:<br><br>Average MC-RITQ = 1000*Steps/Moves = " + (1000*tsts*stp/mn).toFixed(2) + "<br>Moves = "+mn + " Steps = "+ tsts*stp + "<br>Average MC-complexity = Moves/Steps = " + (mn/(tsts*stp)).toFixed(2) + "<br><br>Maximum MC-RITQ = 1000*Steps/MNMT = " + (1000*stp/min_tst_mn).toFixed(2) + "<br>where MNMT is minimum number of moves achieved in one test = " + min_tst_mn + "</b><br><br>";
+document.getElementById("OUT").innerHTML = "<b>All " +tsts+ " tests completed.<br><br>Monte Carlo (MC) method results<br>for this configuration: "+hm+"*" + hm + ", " + (-emb+(hm*hm)) + " chips of "+ kcb + " types:<br><br>Average MC-RITQ = 1000*Steps/Moves = " + (1000*tsts*stp/mn).toFixed(2) + "<br>Moves = "+mn + " Steps = "+ tsts*stp + "<br>Average MC-complexity = Moves/Steps = " + (mn/(tsts*stp)).toFixed(2) + "<br><br>Maximum MC-RITQ = 1000*Steps1/MNMT = " + (1000*stp/min_tst_mn).toFixed(2) + "<br>where Steps1 is number steps in one test = "+ stp +"<br>MNMT is minimum number of moves achieved in one test = " + min_tst_mn + "</b><br><br>";
 </script>
 </td><td width=15%>&nbsp;</td></tr></tbody>
 </table>
