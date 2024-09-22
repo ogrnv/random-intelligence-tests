@@ -3,7 +3,9 @@
 </head>
 <title>NEXTSAFA - Random Intelligence Test</title>
 <!--
-NEXTSAFA uses only SA FA values gotten from AI. This is useful when AI makes wrong desks-->
+NEXTSAFA uses only SA FA values gotten from AI. This is useful when AI makes wrong desks.
+So far, NEXTSAFA only accepts single-digit addresses.
+-->
 <style>
 html, body {
 background-color: rgba(16, 16, 32, 1.0);
@@ -320,7 +322,7 @@ if(ox5>0){qn++; document.cookie = "qn=" + qn;}
 let sc=""; sc=Csb; cs=sc.toString().replace(/[^0-9]/g, "");
 document.cookie = "cs="+cs;
 xx = "<b> Moves = " + mn + " Steps = " +qn+ "</b> <br>";
-if(ox5==0) xx=xx+"ok - go to the next move. Before that,<br>you can check your last TB.<br>Don't go back if your board is different,<br>just use this board:<br>";
+if(ox5==0) xx=xx+"ok - your move is counted.<br>No need to go back even<br>if your last TB is different from<br>this valid one, just use it:<br>";
 else {
 	if(qn<stp) {
 		n=0;
