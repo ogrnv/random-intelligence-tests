@@ -22,3 +22,8 @@ To compare maximum or average intelligence of the Monte Carlo method with intell
 INPUT.html allows you to enter specified data into cookies, just like FIRST.html does.
 
 FIRST.html, NEXT.html, NEXTSAFA.html, NEXTR.html and INPUT.html were tested in Firefox.
+They were also tested in Devuan Chromium using a local server on port 8000:
+python3 -V --> Python 3.11.2
+cd /some_dir where *.html are
+python3 -m http.server
+in the Chromium --> http://localhost:8000/INPUT.html
