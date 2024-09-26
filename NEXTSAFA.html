@@ -4,7 +4,6 @@
 <title>NEXTSAFA - Random Intelligence Test</title>
 <!--
 NEXTSAFA uses only SA FA values gotten from AI. This is useful when AI makes wrong desks.
-So far, NEXTSAFA only accepts single-digit addresses.
 -->
 <style>
 html, body {
@@ -227,9 +226,7 @@ String.prototype.replaceAt = function(ix, rt) {
   return this.substr(0, ix) + rt + this.substr(ix + rt.length);
 }
 let inp=""; inp=prompt("Input SA and FA:", "");
-if (inp !== null) {inpr = inp.replace(/[^0-9]/g, "");
-	}
-else {alert("You canceled the input"); exit;}
+if (inp == null) {alert("You canceled the input"); exit;}
 
 const hmc = document.cookie.split(';')
 for (let i = 0; i < hmc.length; i++) {
@@ -256,15 +253,22 @@ for (i = 0; i < hm; i++){
 		n++;
 	}
 }
-if(inpr.length !=4){
-	xx="the length of SA FA=" + inpr.length + " is not equal to four"; viv();}
-let i1, j1, i2, j2;
-i1=Number(inpr.substring(0, 1));
-j1=Number(inpr.substring(1, 2));
-i2=Number(inpr.substring(2, 3));
-j2=Number(inpr.substring(3, 4));
+let u=0, si, inc=""; i=0;
+while(i<100){
+	si=inp.substring(i, i+1); 
+	if (si=="["||si=="]"){u++;}
+	if (si=="]"&&u==2){inc=inc+","}
+	if((u==1||u==3)&&si!="[")inc=inc+si;
+	if(si=="]"&&u==4) break;
+	i++;	
+}
+if(u<4) {xx="incorrect input"; viv();}
+let dr=[];
+dr=inc.split(',')
+i1=Number(dr[0]);j1=Number(dr[1]);i2=Number(dr[2]);j2=Number(dr[3]);
+
 if(i1 >= hm || i2 >= hm || j1 >= hm || j2 >= hm){
-xx="address is not correct: SA=[" + i1 + "," + j1 + "] FA=[" + i2 + "," + j2 + "]"; viv();
+xx="address(es) is(are) incorrect: SA=[" + i1 + "," + j1 + "] FA=[" + i2 + "," + j2 + "]"; viv();
 }
 // making swap
 let n1=i1*hm+j1;
