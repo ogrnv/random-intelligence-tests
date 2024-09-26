@@ -266,7 +266,7 @@ if(u<4) {xx="Incorrect input. Check []"; viv();}
 let dr=[-1,-1,-1,-1];
 dr=inc.split(',')
 i1=Number(dr[0]);j1=Number(dr[1]);i2=Number(dr[2]);j2=Number(dr[3]);
-if(isNaN(i1)||isNaN(i2)||isNaN(j1)||isNaN(j2)){
+if(isNaN(i1)||isNaN(i2)||isNaN(j1)||isNaN(j2)||dr[0]==""||dr[1]==""||dr[2]==""||dr[3]==""){
 	xx="Incorrect input. Not a number after comma or ["; viv();
 }
 if(i1 >= hm || i2 >= hm || j1 >= hm || j2 >= hm
