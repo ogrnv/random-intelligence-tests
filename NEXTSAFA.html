@@ -308,15 +308,15 @@ for (i = 0; i < hm; i++){
 }
 
 if(err>0) {
-  xx="b - swapped or relabeled chips.<br>Check address(es):";
+  xx="b - your SA, FA lead to TB, in which the chips are swapped or relabeled.<br>Check address(es):";
   for(i=0; i<err; i++){xx=xx+" ["+ir[i]+","+jr[i]+"]";}
   viv();
 }
-if(cbz!=emb) {xx="b - the TB zeros number has been changed";  viv();}
-if(m<2) {xx="b - TB has less than two changes";  viv();}
-if(m>2) {xx="b - TB has more than two changes"; viv();}
+if(cbz!=emb) {xx="b - your SA, FA lead to TB in which the number of zeros has been changed";  viv();}
+if(m<2) {xx="b - your SA, FA lead to TB with less than two changes";  viv();}
+if(m>2) {xx="b - your SA, FA lead to TB with more than two changes"; viv();}
 
-if(Csa[x0][y0]!=Csb[x1][y1]) {xx="b - the relocated chip's markings have been changed";
+if(Csa[x0][y0]!=Csb[x1][y1]) {xx="b - the marking of the relocated chip is changed";
  viv();}
 //check accessibility FA from SA
 fz(x0,y0);
