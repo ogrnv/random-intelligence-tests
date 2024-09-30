@@ -33,7 +33,7 @@ Let EM be a relocation of a chip to a horizontally or vertically adjacent zero c
 Every game move must be either an EM or a sequence of several EMs. Let the move start address be SA and the move finish address be FA. Please note: FA must not be equal to SA. Let move number be MN.<br><br>
 The goal of the game is to complete it in the fewest number of moves. The game ends after <b><span id="STEPS"></span></b> step(s).
 A step ends when YOU by your last move, complete a formation of a straight horizontal or vertical or diagonal line of five or more chips with the same marking. After completing the step, you will receive and must use TB board with these updates:
- five successive chips are removed from the line (for cases with long or/and several line(s) it done randomly), then five previously presented chips are randomly added to the free cells of the board.<br><br>
+ five successive chips are removed from the line (for cases with long or/and several line(s) it is done randomly), then five previously presented chips are randomly added to the free cells of the board.<br><br>
 For the sake of certainty, let in an cell address [i,j], i be the row number, j be the column number and both be numbered from zero.</p><p align=left class=F16> 
 The board with chips is:<br></p>
 <p align=left class=F16 id="CELLS"></p>
@@ -44,7 +44,7 @@ Wait my input after each your move. It could be:<br>
 a status line indicating the number of moves and steps;<br>
 ok - your move is counted. If only SA, FA are used to check your move, you can compare your last board with a verified board that will be provided. I recommend using the verified board. In any case go to the next move;<br>
 b ??? - wrong, decrease MN by 1 and come back. The last good TB will be provided;<br>
-s - a step completed. An updated board with chips and five new random chips will be provided;<br>
+s - a step completed. An updated board with chips and, if needed, five new random chips will be provided;<br>
 F - the game is over.<br>
 where ??? is a reason of the error.
 <br><br>THE END OF THE TEST TASK</p>
