@@ -306,18 +306,9 @@ for (i = 0; i < hm; i++){
 		n++;
 	}
 }
-
-if(err>0) {
-  xx="b - your SA, FA lead to TB, in which the chips are swapped or relabeled.<br>Check address(es):";
-  for(i=0; i<err; i++){xx=xx+" ["+ir[i]+","+jr[i]+"]";}
-  viv();
+if(err>0||m<2) {
+  xx="b - before your move TB[SA] and TB[FA]<br>were both non-zero or both zero"; viv();
 }
-if(cbz!=emb) {xx="b - your SA, FA lead to TB in which the number of zeros has been changed";  viv();}
-if(m<2) {xx="b - your SA, FA lead to TB with less than two changes";  viv();}
-if(m>2) {xx="b - your SA, FA lead to TB with more than two changes"; viv();}
-
-if(Csa[x0][y0]!=Csb[x1][y1]) {xx="b - the marking of the relocated chip is changed";
- viv();}
 //check accessibility FA from SA
 fz(x0,y0);
 if(TC[x1][y1]==0){
@@ -337,6 +328,7 @@ else {
 		s=n5;
 		document.cookie = "n5="+s.toString().replace(/[^0-9]/g, "");
 		s = "The next five chips: "; for (i=0; i<4; i++) s=s+n5[i]+","; s=s+n5[4];
+		if(qn==(stp - 1)) s="";
 		document.getElementById("NEXT5").innerHTML = s;
 		xx=xx+"s - the updated board:<br>";}
 	else {xx=xx+"F - the game is over. Many thanks!";}
