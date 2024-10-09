@@ -33,7 +33,7 @@ a:link, a:visited {
 <p align=left class=F16 id="OUT"></p>
 <p align=left class=F16 id="NEXT5"></p>
 <div style="display:inline-block; vertical-align:top;">
-  <span id="ISS"></span><button class="js-copy-btn">Copy to clipboard</button><br />
+  <button class="js-copy-btn"><span id="ISS">Copy to clipboard</span></button><br />
 </div>
 <div style="display:inline-block;">
   <textarea class="js-test-textarea" style="display:none;" cols="35" rows="4">
@@ -98,7 +98,7 @@ function copyTextToClipboard(text) {
   catch (err) {
     alert('Oops, unable to copy');
   }
-  document.getElementById("ISS").innerHTML = "*";
+  document.getElementById("ISS").innerHTML = "Copied";
   document.body.removeChild(tA);
 }
 var copyBtn = document.querySelector('.js-copy-btn');
