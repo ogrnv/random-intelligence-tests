@@ -1,0 +1,245 @@
+<!DOCTYPE html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<title>FIRST-MC - Random Intelligence Test</title>
+<!-- We want to find the most difficult board-->
+<style>
+
+html, body {
+background-color: rgba(16, 16, 32, 1.0);
+color:#FFFFFF;
+font-size:16px;
+width:  100%;
+height: 100%;
+}
+a:link, a:visited {
+  color: #0DD;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+.f16 {font-size: 16pt; color:  #0C0;}
+.F16 {font-size: 16pt; color:  #0DD;}
+</style> 
+<body>
+<table width=100% heigth=100%>
+<tbody>
+<tr>
+<td width=15%>&nbsp;</td>
+<td width=70%>
+<p align=left class=f16><br><br><br><b>
+You can reload this page several times if necessary.<br>
+Modify the script in FIRST-RS.html to get a different configuration.<br>The boards can be used in INPUT(-NB).html</b><br></p>
+<p align=left class=F16 id="OUT"></p>
+<p align=left class=f16>
+<a href="https://github.com/ogrnv/random-intelligence-tests" target="_blank">https://github.com/ogrnv/random-intelligence-tests</a>
+<br><br>
+</p>
+</td><td width=15%>&nbsp;</td>
+</tr></tbody>
+</table>
+<script>
+var
+tsrs=3,	// the number groups of tests
+tsts=1000,	// the number of tests in group
+hm=8,		//size of a side of square table/board.
+kcb=2,		//how many of types of chips are placed on the table	
+emb=10,		//number of empty sells 22=64-42
+mn=0,		//moves number
+qn=0,		//number of finished lines >4 chips long
+Csa = [],
+Csb = [],	//board
+Csmax = "",
+TC = []
+;		
+var tst_mn=0, sum_tst_mn;
+var xx="",ina, jna, iko, jko, ox5=0, hmb, bc, out="";
+var ca, uu=0, n=0;
+var x0 = -1, x1 = -1, y0 = -1, y2 = -1; //0-start address 1-finish one
+/*function random(min, max) {
+var mi = Math.ceil(min), ma = Math.floor(max);
+return Math.floor(Math.random()*(ma-mi+1)+mi);
+}*/
+function random(min, max) {//https://stackoverflow.com/a/65440696
+    const range = max - min + 1
+    const bytes_needed = Math.ceil(Math.log2(range) / 8)
+    const cutoff = Math.floor((256 ** bytes_needed) / range) * range
+    const bytes = new Uint8Array(bytes_needed)
+    let value
+    do {
+        crypto.getRandomValues(bytes)
+        value = bytes.reduce((acc, x, n) => acc + x * 256 ** n, 0)
+    } while (value >= cutoff)
+    return min + value % range
+}
+function fz(fzx, fzy){
+ if((fzx>0)&&(Csb[fzx-1][fzy]==0)&&(TC[fzx-1][fzy]==0))
+   {TC[fzx-1][fzy]=1; fz((fzx-1),fzy);}
+ if((fzx<hm-1)&&(Csb[fzx+1][fzy]==0)&&(TC[fzx+1][fzy]==0))
+   {TC[fzx+1][fzy]=1; fz((fzx+1),fzy);}
+ if((fzy>0)&&(Csb[fzx][fzy-1]==0)&&(TC[fzx][fzy-1]==0))
+   {TC[fzx][fzy-1]=1; fz(fzx,(fzy-1));}
+ if((fzy<hm-1)&&(Csb[fzx][fzy+1]==0)&&(TC[fzx][fzy+1]==0))
+   {TC[fzx][fzy+1]=1; fz(fzx,(fzy+1));}
+}
+function ver(colr, i, j){
+ina=i; jna=j;
+while((ina-1) >= 0){
+ina--;
+if(colr != Csb[ina][j]){ina++; break;}	
+}
+iko=i;
+while((iko+1) < hm){
+iko++;
+if(colr != Csb[iko][j]){iko--; break;}	
+}
+hmb=iko-ina+1; // длина линии
+if (hmb>4) {ox5=1;}
+}
+//-----------------------------------------
+function hor(colr, i, j){
+jna=j; ina=i;
+while((jna-1) >= 0){
+jna--;
+if(colr != Csb[i][jna]){jna++; break;}	
+}
+jko=j;
+while((jko+1) < hm){
+jko++;
+if(colr != Csb[i][jko]){jko--; break;}	
+}
+hmb=jko-jna+1;
+if (hmb>4) {ox5=1;}
+}
+//-----------------------------------------
+function nak(colr, i, j){
+ina=i; jna=j;
+while((ina-1) >= 0 && (jna-1) >= 0){
+ina--; jna--;
+if(colr != Csb[ina][jna]){ina++; jna++; break;}	
+}
+iko=i; jko=j;
+while((iko+1) < hm && (jko+1) < hm){
+iko++; jko++;
+if(colr != Csb[iko][jko]){iko--; jko--; break;}	
+}
+hmb=jko-jna+1;
+if (hmb>4) {ox5=1;}
+}
+//-----------------------------------------
+function nkl(colr, i, j){
+ina=i; jna=j;
+while((ina+1) < hm && (jna-1) >= 0){
+ina++; jna--;
+if(colr != Csb[ina][jna]){ina--; jna++; break;}	
+}
+iko=i; jko=j;
+while((iko-1) >= 0 && (jko+1) < hm){
+iko--; jko++;
+if(colr != Csb[iko][jko]){iko++; jko--; break;}	
+}
+hmb=ina-iko+1;
+if (hmb>4) {ox5=1;}
+}
+function ValuX(colr, i, j)
+{
+let b, e, n, an = new Int32Array(1);
+let tt = [];// таблица типов
+
+// выбираем случайно тип {0,1..3} и проверяем его на линию > 4 фишек
+for (e = 0; e < 4; e++) tt[e] = -1; //номер строки = типу, значение > 0 номер по порядку
+ e=0;
+//найти порядок 4х типов 
+while (e<4){ // найти следующий тип | - / \  для исследования на >4
+	window.crypto.getRandomValues(an); n=0;	
+	while(n<16){
+	b = 3 & an[0]; //выделяем 2 бита справа
+	if (tt[b]  == -1) {tt[b]  = e;
+	e++; if (e==4) break;}
+	an[0] = an[0] >>> 2; // сдвигаем на 2 бита вправо
+	n++; 
+	}
+}
+//пытаемся найти линию в порядке определенном в tt
+for (e=0; e<4; e++){ // e - номер порядка (по порядку становись)
+b=1;
+n=0;
+while(n<4){ //ищем номер порядка e
+	if(tt[n]==e) {//n - номер типа - | / \ 
+	//для определенного типа n ищем 5 в ряд 
+	switch (n) {
+  	case 0: ver(colr, i, j); break;
+	case 1: hor(colr, i, j); break;
+	case 2: nak(colr, i, j); break;
+	case 3: nkl(colr, i, j); break; 
+	default:
+	}
+	}
+	if(ox5>0) {
+		e=n=4; // найдено > 4
+	}
+	else n++;
+}
+//if(ox5==1) e=4;
+}
+}//ValuX  end
+
+function newdesk(){
+let i, j;
+for (i = 0; i < hm; i += 1){
+	Csa[i] = []; Csb[i] = []; TC[i] = []; //Csmax[i] = [];
+	for (j = 0; j < hm; j += 1){
+		TC[i][j] = 0;
+		//Csmax[i][j] = 0;
+		Csa[i][j]=cs=random(1, kcb); Csb[i][j]=cs
+	}
+}
+//empty emb cells
+n=0;
+while(n<emb){	
+	i=random(0, hm - 1);
+	j=random(0, hm - 1);
+	if(Csa[i][j]>0){Csa[i][j] = 0; Csb[i][j] = 0; n++;}
+}
+}
+// FA --> [x1][y1]  SA --> [x0][y0]
+
+for(let tsr=0; tsr<tsrs; tsr++){//next group
+	mn=0; tst_mn=0; sum_tst_mn=0;
+	newdesk();
+for(let tst=0; tst<tsts; tst++){
+while(qn<1){
+	uu=0, n=0; ox5=0;
+	while(uu==0){//получить правильный ход
+	x0=random(0, hm-1);y0=random(0, hm-1);x1=random(0, hm-1);y1=random(0, hm-1);
+		if(Csb[x0][y0]>0&&Csb[x1][y1]==0){
+		//check accessibility FA from SA 
+			fz(x0,y0); if(TC[x1][y1]==1){uu=1;}
+		}
+	}
+	Csb[x1][y1]=Csb[x0][y0]; Csb[x0][y0]=0;
+	ValuX(Csb[x1][y1],x1,y1);
+	mn++; tst_mn++;
+	if(ox5>0) qn++;
+} //while(qn<1
+qn=0;
+for (i = 0; i < hm; i++){
+	for (j = 0; j < hm; j++){
+		Csb[i][j] = Csa[i][j];
+	}
+}
+//here one test ends
+sum_tst_mn=sum_tst_mn+tst_mn;
+tst_mn=0;
+}//for(tst...
+//the end of tests of a group.	+"";
+out=out + "<br>"+(sum_tst_mn/tsts).toFixed(2)+"<br>";
+Csmax=Csa.toString();
+for (i=0; i<hm; i++)out=out+Csmax.substring(i*16, (i*16)+16) +"<br>";
+} //for(tsr...
+//here tsts*tsrs tests ends
+
+document.getElementById("OUT").innerHTML = "<b><br>Monte Carlo (MC) method results<br>for this configuration:<br>board size "+hm+"*" + hm + ", " + (-emb+(hm*hm)) + " chips of "+ kcb + " types.<br>There is only one step in each test.<br>Each of the "+tsrs+" groups contains "+tsts+" tests<br>that use the same randomly generated board.<br>Average MC-complexities for the groups:<br>" + out + " </b><br>";
+</script>
+</body>
+</html>
