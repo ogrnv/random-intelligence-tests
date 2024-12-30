@@ -255,7 +255,8 @@ uu=0, n=0; ox5=0;
 while(uu==0){//получить правильный ход
 x0=random(0, hm-1);y0=random(0, hm-1);x1=random(0, hm-1);y1=random(0, hm-1);
 if(Csb[x0][y0]>0&&Csb[x1][y1]==0){
-//check accessibility FA from SA 
+//check accessibility FA from SA
+for (let aa = 0; aa < hm; aa += 1)for (let bb = 0; bb < hm; bb += 1)TC[aa][bb] = 0;
 fz(x0,y0);
 if(TC[x1][y1]==1){uu=1;}
 }
